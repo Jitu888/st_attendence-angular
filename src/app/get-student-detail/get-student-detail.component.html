@@ -1,0 +1,31 @@
+<h1>get-student-detail works!</h1>
+
+<div class="container-fluid">
+    <div class="row">
+    <ul *ngFor="let obj of result">
+        <li> <img src={{obj?.profile}} /></li>
+        <li> Name: <i> {{obj?.name}}</i></li>
+        <li> Class: {{obj.class}}</li>
+        <li> RollNo: {{obj.rollNo}}</li>
+        <li> Section: {{obj.section}}</li>
+        <li>Gender : {{obj.gender}}</li>
+        <li> Date-of-Birth: {{obj.dateOfBirth}}</li>
+        <li> Year: {{obj.year}}</li>
+        <li>Attendence</li>
+        <ol>
+            <li>jan:[{{obj.jan}}]</li>
+            <li>feb:[{{obj.feb}}]</li>
+            <li>march:[{{obj.march}}]</li>
+            <li>april:[{{obj.april}}]</li>
+            <li>may:[{{obj.may}}]</li>
+            <li>june:[{{obj.june}}]</li>
+            <li>july:[{{obj.july}}]</li>
+            <li>august:[{{obj.aug}}]</li>
+            <li>sept:[{{obj.sept}}]</li>
+            <li>oct:[{{obj.oct}}]</li>
+            <li>Nov:[{{obj.nov}}]</li>
+            <li>Dec:[{{obj.dec}}]</li>
+        </ol>
+    </ul>
+    </div>
+</div>
