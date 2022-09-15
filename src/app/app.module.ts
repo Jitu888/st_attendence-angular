@@ -8,22 +8,47 @@ import { FillAttendenceComponent } from './fill-attendence/fill-attendence.compo
 import{ReactiveFormsModule} from '@angular/forms';
 import{HttpClientModule} from '@angular/common/http'
 import { GetStudentDetailComponent } from './get-student-detail/get-student-detail.component';
+import{NgxPaginationModule} from 'ngx-pagination';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import {ToastService } from 'angular-toastify';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AddStudentComponent,
     FillAttendenceComponent,
-    GetStudentDetailComponent
+    GetStudentDetailComponent,
+    HomeComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxPaginationModule,
+    NoopAnimationsModule,
+    NgbModule,
+    FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
+    BrowserAnimationsModule
+    
+    
+
 
   ],
-  providers: [],
+  providers: [ToastService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

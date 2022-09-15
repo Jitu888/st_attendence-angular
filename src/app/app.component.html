@@ -1,38 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="#">STUDENT-ATTENDENCE-SYSTEM</a>
+
+<nav class="navbar navbar-expand-lg" style="position:sticky;top:0px ;left:0px ; z-index:999;width:100%; height:100px;margin:0;padding:0;background-color:black;">
+
+    <a class="navbar-brand" routerLink="#" style="padding-left:20px ;color:yellow;font-size:30px">STUDENT-ATTENDENCE-SYSTEM</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="/" style="color:white;font-size:20px;">HOME</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/add">Add Student Details</a>
+          <a class="nav-link active" routerLink="/add" style="color:white;font-size:20px;">ADD STUDENT </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link active" routerLink="/attendence" style="color:white;font-size:20px;">FILL ATTENDENCE</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/attendence">Fill Attendence</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" routerLink="/details">Get Student Details</a>
+          <a class="nav-link active" routerLink="/details" style="color:white;font-size:20px;">GET STUDENT DETAILS</a>
         </li>
       </ul>
     </div>
-  </div>
+  
 </nav>
-
-
-
-
-
-
-
-
-
-
-
-<div class ="container">
+<div>
   <router-outlet></router-outlet>
 </div>
+
+
+
+
+
+
+
+

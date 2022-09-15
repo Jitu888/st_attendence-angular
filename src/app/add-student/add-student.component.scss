@@ -1,0 +1,22 @@
+.container{
+    border:11px solid rgb(2, 6, 8);
+    border-radius:20px;
+}
+.button-sty{
+    height: 150px;
+    width: 150px;
+    background-color: #f7f7f7;;
+    
+    background-image: url(https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=);
+    background-size:cover;
+    object-fit: contain;
+    display: grid;
+    place-content: center;
+    border-radius: 9px;
+    box-shadow: rgba(244, 244, 245, 0.925) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    overflow: hidden; 
+}
+.button-sty input { 
+    height: 0;
+    width: 0;
+}

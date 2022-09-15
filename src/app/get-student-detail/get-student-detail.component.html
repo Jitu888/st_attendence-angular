@@ -1,31 +1,236 @@
-<h1>get-student-detail works!</h1>
+<div style="background-image:url(.././../assets/images/firstimage.jpg);background-size:cover;">
+    <div class="container " *ngFor="let obj of result | paginate
+    : {
+        itemsPerPage: tableSize,
+        currentPage: page,
+        totalItems: count
+      };
+         let i = index,
+         let ind = index">
 
-<div class="container-fluid">
-    <div class="row">
-    <ul *ngFor="let obj of result">
-        <li> <img src={{obj?.profile}} /></li>
-        <li> Name: <i> {{obj?.name}}</i></li>
-        <li> Class: {{obj.class}}</li>
-        <li> RollNo: {{obj.rollNo}}</li>
-        <li> Section: {{obj.section}}</li>
-        <li>Gender : {{obj.gender}}</li>
-        <li> Date-of-Birth: {{obj.dateOfBirth}}</li>
-        <li> Year: {{obj.year}}</li>
-        <li>Attendence</li>
-        <ol>
-            <li>jan:[{{obj.jan}}]</li>
-            <li>feb:[{{obj.feb}}]</li>
-            <li>march:[{{obj.march}}]</li>
-            <li>april:[{{obj.april}}]</li>
-            <li>may:[{{obj.may}}]</li>
-            <li>june:[{{obj.june}}]</li>
-            <li>july:[{{obj.july}}]</li>
-            <li>august:[{{obj.aug}}]</li>
-            <li>sept:[{{obj.sept}}]</li>
-            <li>oct:[{{obj.oct}}]</li>
-            <li>Nov:[{{obj.nov}}]</li>
-            <li>Dec:[{{obj.dec}}]</li>
-        </ol>
-    </ul>
+
+        <div class="row" style=" border: 5px solid rgb(43, 77, 8);
+        border-radius: 20px; overflow: hidden;
+        ">
+            <div align="center" class="col-5" style="background-color:#00512b;">
+                <img class="profile_img" src="{{obj?.profile}}" alt="student img" style=" width: 150px ;color:white;
+            height: 150px;
+            object-fit: cover;
+            margin: 10px auto;
+            border: 10px solid #ccc;
+            border-radius: 50%;">
+                <div align="left" style="color:white">
+                    <h5 class="mb-0">Name : &nbsp;{{obj?.name}}
+                    </h5>
+                    <h5 class="mb-0">Class : &nbsp;{{obj?.class}}
+                    </h5>
+                    <h5 class="mb-0">Section :
+                        &nbsp;{{obj?.section}}</h5>
+                    <h5 class="mb-0">Roll-no
+                        :&nbsp;{{obj?.rollNo}}</h5>
+                    <h5 class="mb-0">Gender :
+                        &nbsp;{{obj?.gender}}</h5>
+                    <h5 class="mb-0">Date-of-Birth :
+                        &nbsp;{{obj?.dateOfBirth}}</h5>
+                    <h5 class="mb-0">Academic-year :
+                        &nbsp;{{obj?.year}}</h5>
+                </div>
+                <br>
+                <div class="mb-2">
+                    <button type="button" class="btn btn-secondary" (click)="update(picmodal,obj)">update
+                        pic</button>&nbsp;
+                    <button type="button" class="btn btn-secondary" (click)="open(mymodal,obj)">edit profile</button>
+                </div>
+            </div>
+
+            <div class="col-2" style="background-color:#00512b ;">
+                <select class="mt-2" name="month" id="month" (change)="handleMonth($event, obj, ind)">
+                    <option selected>select month</option>
+                    <option value="jan">JANUARY</option>
+                    <option value="feb">FEBRUARY</option>
+                    <option value="march">MARCH</option>
+                    <option value="april">APRIL</option>
+                    <option value="may">MAY</option>
+                    <option value="june">JUNE</option>
+                    <option value="july">JULY</option>
+                    <option value="aug">AUGUST</option>
+                    <option value="sept">SEPTEMBER</option>
+                    <option value="oct">OCTOBER</option>
+                    <option value="nov">NOVEMBER</option>
+                    <option value="dec">DECEMBER</option>
+                </select>
+            </div>
+            <div class="col-5 " style="background-color:#00512b;color:white">
+                <div class="foo blue"></div>
+                <p style="float:left;">Absent</p>
+                <div class="foo purple"></div>
+                <p style="float:left;">Present</p>
+
+                <div class="card" style="float:left;">
+
+                </div>
+
+                <div
+                    style="width:22rem; height:19rem; border-radius: 1rem; background:white; margin:4rem 4rem 0rem -3rem ;  ">
+                    <div style="display:flex; flex-wrap:wrap; justify-content:normal; gap:1rem; padding:1px; ">
+
+
+                        <span *ngFor="let attend of obj?.selectedMonth" class="rounded-circle p-2 m-1  text-white"
+                            [ngStyle]="{'background-color':attend === 'P' ? 'yellowgreen' : 'orangered'}">
+                            {{attend}} </span>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="container" style="color:white;border-radius: 20px;">
+
+        <div class="d-flex justify-content-center">
+
+            <div style="margin-top: 1rem;">
+                Items per Page:
+                <select (change)="handlePageSizeChange($event)">
+                    <option *ngFor="let size of tableSizes" [ngValue]="size">
+                        {{ size }}
+                    </option>
+                </select>
+            </div>
+            <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)"
+                style="margin-top: 1rem;">
+            </pagination-controls>
+        </div>
     </div>
 </div>
+
+
+
+<div style="margin-top:1000px">
+    <ng-template #picmodal let-modal>
+        <div class="modal-header mt-10 ">
+            <h4 class="modal-title mt-4" id="modal-basic-title">UPDATE PIC</h4>
+
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+
+        <div class=" form-group mb-3" style="padding:0 10px 0 10px;" align="center">
+            <label class="button-sty" style="background-color:white">
+                <input type="file" (change)="upload_student_img($event)">
+                <img *ngIf="userImg" src={{userImg}} width="100%" height="100%" />
+
+
+            </label>
+            <label style="padding:0 15px 0 10px;">UPLOAD IMAGE</label>
+        </div>
+        <div class="modal-footer" [formGroup]="upload" (click)="OnSubmit(upload.value)">
+            <button type="submit" class="btn btn-outline-dark" data-bs-dismiss="modal"
+                (click)="modal.close('Save click')">SAVE</button>
+        </div>
+    </ng-template>
+</div>
+
+
+
+<!-- -------------------------------------------modal---------------------------------------------------------->
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header ">
+        <h4 class="modal-title " id="modal-basic-title">EDIT PROFILE</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="edit">
+            <label for="name" class="NAME">NAME</label>
+            <input type="text" id="name" class="form-control" formControlName="name">
+
+            <label for="class" class="class">CLASS</label>
+            <select class="form-select" formControlName="class" aria-label="Default select example">
+                <option selected>select class</option>
+                <option value="LKG">LKG</option>
+                <option value="UKG">UKG</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+            <label for="section" class="section">SECTION</label>
+            <select class="form-select" formControlName="section">
+                <option selected>select section </option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+                <option value="H">H</option>
+                <option value="I">I</option>
+                <option value="J">J</option>
+            </select>
+            <label for="rollNo" class="NAME">ROLL NO</label>
+            <input type="text" class="form-control mb-2" formControlName="rollNo" placeholder="enter roll-no">
+            <label for="gender" class="gender">GENDER : </label> &nbsp;&#160;&nbsp;&#160;&nbsp;&#160;&nbsp;&#160;
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="gender" name="gender" id="inlineRadio1"
+                    value="male">
+                <label class="form-check-label" for="inlineRadio1">male</label>
+            </div>&nbsp;&#160;&nbsp;&#160;&nbsp;&#160;
+
+            <div class="form-check form-check-inline mb-2">
+                <input class="form-check-input" type="radio" formControlName="gender" name="gender" id="inlineRadio2"
+                    value="female">
+                <label class="form-check-label" for="female">female</label>
+            </div><br>
+            <label for="dateOfBirth" class="NAME">DATE OF BIRTH</label>
+            <input type="date" class="form-control" formControlName="dateOfBirth">
+            <label for="year" class="year">ACADMIC-YEAR</label>
+            <select type="date" class="form-select" formControlName="year">
+                <option default>select year</option>
+                <option value="2010">2010</option>
+                <option value="2011">2011</option>
+                <option value="2012">2012</option>
+                <option value="2013">2013</option>
+                <option value="2014">2014</option>
+                <option value="2015">2015</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                <option value="2031">2031</option>
+                <option value="2032">2032</option>
+                <option value="2033">2033</option>
+            </select>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark" (click)="onedit(edit.value)"
+            (click)="modal.close('Save click')">SAVE</button>
+    </div>
+</ng-template>

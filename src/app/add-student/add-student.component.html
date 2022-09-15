@@ -1,76 +1,181 @@
-<form [formGroup]="addstudent" (ngSubmit)= "OnSubmit(addstudent.value)">
-    <div class="form-group mb-3">
-        <label for="name" class="NAME">NAME</label>
-        <input type="text" class="form-control" formControlName="name" placeholder="enter name">
-    </div>
-    <div class=" form-group mb-3">
-        <label for="class" class="class">CLASS</label>
-        <select class="form-select" formControlName="class" aria-label="Default select example">
-            <option selected>select class</option>
-            <option value="LKG">LKG</option>
-            <option value="UKG">UKG</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-        </select>
-    </div>
+<div style="background-image:url(.././../assets/images/firstimage.jpg);background-size:cover ;height:110vh">
+    <div class="container" style=" background-color:whitesmoke;
+    width: 48rem;
+    margin:50px 20rem 0 32rem;
+    background-color: whitesmoke;
+    position: absolute ;
+    padding:0">
+        <form [formGroup]="addstudent" (ngSubmit)="OnSubmit(addstudent.value)" class="mt-7" ngNativeValidate
+            style="background-color:#00512b">
+            <h1 align="center" class="mb-3" style="background-color:rgb(5, 3, 10); color:whitesmoke">STUDENT-FORM</h1>
+            <div class=" form-group mb-3" style="padding:0 10px 0 10px;" align="right">
+                <label class="button-sty" style="background-color:white">
+                    <input type="file" formControlName="profile" (change)="upload_student_img($event)">
+                    <img *ngIf="userImg" src={{userImg}} width="100%" height="100%" />
 
-    <div class=" form-group mb-3">
-        <label for="section" class="section">SECTION</label>
-        <select class="form-select" formControlName="section" >
-            <option default>select section</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="G">G</option>
-            <option value="H">H</option>
-            <option value="I">I</option>
-            <option value="J">J</option>
-        </select>
-    </div>
-    <div class=" form-group mb-3">
-        <label for="Roll-NO" class="NAME">ROLL NO</label>
-        <input type="text" class="form-control" formControlName="RollNo" placeholder="enter roll-no">
-    </div>
+                    <span style="color:red" *ngIf="profile && profile.invalid && profile.touched ">choose a image</span>
+                </label>
+                <label style="padding:0 15px 0 15px;color:white">UPLOAD IMAGE</label>
+            </div>
+            <div class="form-group mb-3" style="position: relative; padding:0 10px 0 10px;">
 
 
-    <div class =" form-group  mb-3">
-        <label for="gender" class="gender">GENDER : </label> &nbsp;&#160;&nbsp;&#160;&nbsp;&#160;&nbsp;&#160;
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" formControlName="Gender"  name="Gender" id="inlineRadio1" value="male">
-        <label class="form-check-label" for="inlineRadio1">male</label>
-      </div>&nbsp;&#160;&nbsp;&#160;&nbsp;&#160;
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" formControlName="Gender"  name="Gender" id="inlineRadio2" value="female">
-        <label class="form-check-label" for="female">female</label>
-      </div>
-    </div> 
-    <div class=" form-group mb-3">
-        <label for="DOB" class="NAME">DATE OF BIRTH</label>
-        <input type="text" placeholder="yyyy/mm/dd" class="form-control" formControlName="Dob">
-    </div> 
-    <div class=" form-group mb-4">
-        <label for="year" class="year">YEAR</label>
-        <input type="text" placeholder="yyyy" class="form-control" formControlName="Year">
+
+                <label for="name" class="NAME" style="color:white">NAME</label>
+
+                <input type="text" id="name" class="form-control" formControlName="name" required="true"
+                    placeholder="please enter the name">
+                <span style="color:red" *ngIf="name && name.invalid && name.touched">Name is not valid</span>
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+
+            </div>
+            <div class=" form-group mb-3" style="padding:0 10px 0 10px;">
+                <label for="class" class="class" style="color:white">CLASS</label>
+                <select class="form-select" formControlName="class" aria-label="Default select example">
+
+                    <option value="LKG">LKG</option>
+                    <option value="UKG">UKG</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <span style="color:red" *ngIf="class && class.invalid && class.touched">Class is required</span>
+            </div>
+
+            <div class=" form-group mb-3" style="padding:0 10px 0 10px;">
+                <label for="section" class="section" style="color:white">SECTION</label>
+                <select class="form-select" formControlName="section">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
+                    <option value="I">I</option>
+                    <option value="J">J</option>
+                </select>
+                <span style="color:red" *ngIf="section && section.invalid && section.touched">Section is required</span>
+            </div>
+            <div class=" form-group mb-3" style="padding:0 10px 0 10px;">
+                <label for="rollNo" class="NAME" style="color:white">ROLL-NO</label>
+                <input type="number" class="form-control" formControlName="rollNo"
+                    placeholder=" Please enter the roll-no">
+                <span style="color:red" *ngIf="rollNo && rollNo.invalid && rollNo.touched">Roll-No is required</span>
+            </div>
+
+
+            <div class=" form-group  mb-3" style="padding:0 10px 0 10px;">
+                <label for="gender" class="gender" style="color:white">GENDER : </label>
+                &nbsp;&#160;&nbsp;&#160;&nbsp;&#160;&nbsp;&#160;
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" formControlName="gender" name="gender"
+                        id="inlineRadio1" value="male">
+                    <label class="form-check-label" for="inlineRadio1" style="color:white">male</label>
+                </div>&nbsp;&#160;&nbsp;&#160;&nbsp;&#160;
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" formControlName="gender" name="gender"
+                        id="inlineRadio2" value="female">
+                    <label class="form-check-label" for="female" style="color:white">female</label>
+                </div>
+                <span style="color:red" *ngIf="gender && gender.invalid && gender.touched">Gender is required</span>
+            </div>
+            <div class=" form-group mb-3" style="padding:0 10px 0 10px;">
+                <label for="dateOfBirth" class="NAME" style="color:white">DATE OF BIRTH</label>
+                <input type="date" class="form-control" formControlName="dateOfBirth">
+                <span style="color:red" *ngIf="dateOfBirth && dateOfBirth.invalid && dateOfBirth.touched">Date-of-Birth
+                    is required</span>
+            </div>
+
+
+
+            <div class=" form-group mb-5" style="padding:0 10px 0 10px;">
+                <label for="year" class="year"style="color:white">ACADEMIC-YEAR</label>
+                <select type="date" class="form-select" formControlName="year">
+                    <option default>select year</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                    <option value="2031">2031</option>
+                    <option value="2032">2032</option>
+                    <option value="2033">2033</option>
+                </select>
+                <span style="color:red" *ngIf="year && year.invalid && year.touched">Year is required</span>
+            </div>
+
+
+            <div align="right" class=" form-group " style="padding:0 10px 16px 0;">
+                <button type="submit" class="btn btn-primary" [disabled]="addstudent.invalid">Submit</button>
+            </div>
+        </form>
     </div>
-    <div class=" form-group input-group mb-3">
-        <label class="input-group-text" for="inputGroupFile01">UPLOAD IMAGE</label>
-        <input type="file" class="form-control" formControlName="profile" id="inputGroupFile01" 
-        (change)="upload_student_img($event)">
-    </div>
-<div align="right" class=" form-group mb-5">
-    <button type="submit" class="btn btn-primary">Submit</button>
 </div>
-</form>
+
+
+<div class="toast-container position-fixed top-0 bottom-0 end-0 p-4" style="margin-top:80px ;">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+        style="background-color: green;">
+        <div class="toast-header">
+
+
+
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+
+        <div class="toast-body" *ngIf="result">
+            <strong class="me-auto"> <b>Data Added Successfully</b></strong>
+
+        </div>
+
+
+    </div>
+    <div class="toast-container position-fixed top-0 bottom-0 end-0 p-4" style="margin-top:80px ;">
+        <div id="live" class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+            style="background-color: green;">
+            <div class="toast-header">
+
+
+
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+
+            <div class="toast-body">
+                <strong class="me-auto"> <b>Roll-NO is already occupied </b></strong>
+
+            </div>
+
+
+        </div>
+        <!-- <div align="right" class=" form-group mb-5">
+    <button type="submit" class="btn btn-primary">Submit</button>
+</div> -->
