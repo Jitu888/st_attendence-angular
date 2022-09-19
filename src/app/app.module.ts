@@ -16,6 +16,7 @@ import {ToastService } from 'angular-toastify';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -26,6 +27,7 @@ import { HomeComponent } from './home/home.component';
     FillAttendenceComponent,
     GetStudentDetailComponent,
     HomeComponent,
+    PageNotFoundComponent,
 
   ],
   imports: [

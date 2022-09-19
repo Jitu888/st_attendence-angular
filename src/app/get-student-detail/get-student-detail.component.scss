@@ -45,10 +45,10 @@ body {
     border: 1px solid rgba(0, 0, 0, .2);
  }
  .blue {
-    background:orangered;
+    background:rgb(198, 14, 14);
  }
  .purple {
-    background: yellowgreen;
+    background:green;
  }
  .wine {
     background: #ae163e;
@@ -129,4 +129,13 @@ body {
 .button-sty input { 
   height: 0;
   width: 0;
+}
+.custom-tooltip:hover:after{
+	padding: 3px 6px;
+	background: gray;
+  color: #fff;
+	content: attr(title);
+	position: absolute;
+	right: -40px;
+	top: -26px;
 }

@@ -3,7 +3,7 @@
         <div>
             <div class="row align-items-start" style="padding:0 40px 0 10px">
                 <div class="col-md-4">
-                    <select class="form-select" (click)="select_class($event.target)">
+                    <select class="form-select" formControlName="class" (click)="select_class($event.target)">
                         <option selected>select class</option>
                         <option value="LKG">LKG</option>
                         <option value="UKG">UKG</option>
@@ -23,7 +23,7 @@
 
                 </div>
                 <div class="col-md-4">
-                    <select class="form-select" aria-label="Default select example"
+                    <select class="form-select" aria-label="Default select example" formControlName="section"
                         (click)="select_section($event.target)">
                         <option selected>select section</option>
                         <option value="A">A</option>
@@ -40,8 +40,9 @@
 
                 </div>
                 <div class="col-md-4 ">
-                    <input type="date" class="form-control" formControlName="month"
+                    <input type="date" class="form-control" formControlName="month" name="month"
                         (change)="select_month($event.target)">
+                    <span *ngIf="warnMsg.msg" style="color:red">Please Choose Month</span>
 
                 </div>
 
@@ -67,14 +68,14 @@
             </thead>
             <tbody>
 
-                <tr *ngFor="let item of result">
+                <tr *ngFor="let item of result let i = index">
                     <th scope="row" style="color:white">{{item.rollNo}}</th>
                     <td class="col-md-3" style="color:white">{{item.name}}</td>
                     <td>
-                        <button type="button" class="btn btn-success"
-                            (click)="presentAttendence(item.rollNo)">PRESENT</button>&nbsp;
-                        <button type="button" class="btn btn-danger" (click)="absentAttendence(item.rollNo)"> ABSENT
-                        </button>
+                        <button type="button" class="btn btn-success" (click)="presentAttendence(item.rollNo)" [disabled]="roll.includes(item.rollNo)&& btnstate">PRESENT</button>&nbsp;
+                        <button type="button" class="btn btn-danger" (click)="absentAttendence(item.rollNo)" [disabled]="roll.includes(item.rollNo)&&btnstate"> ABSENT </button>&nbsp;
+                        <button type="button" class="btn btn-secondary" (click)="resetAttendence(item.rollNo) "> RESET </button>
+
 
                     </td>
                 </tr>
@@ -82,7 +83,7 @@
         </table>
     </div>
     <div align="right" class=" form-group " style="padding:0 60px 0 60px ;margin:5rem 5rem 0 0 ">
-        <button type="submit" class="btn btn-primary" (click)="fire($event)" disabled>Submit</button>
+        <button type="submit" class="btn btn-primary" (click)="onsubmit()" [disabled]="highlight()">Submit</button>
 
     </div>
 

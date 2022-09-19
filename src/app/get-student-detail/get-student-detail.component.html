@@ -71,13 +71,16 @@
                 </div>
 
                 <div
-                    style="width:22rem; height:19rem; border-radius: 1rem; background:white; margin:4rem 4rem 0rem -3rem ;  ">
+                    style="width:22rem; height:19rem; border-radius: 1rem; background:rgb(71, 65, 65); margin:4rem 4rem 0rem -3rem ;  ">
                     <div style="display:flex; flex-wrap:wrap; justify-content:normal; gap:1rem; padding:1px; ">
 
 
-                        <span *ngFor="let attend of obj?.selectedMonth" class="rounded-circle p-2 m-1  text-white"
-                            [ngStyle]="{'background-color':attend === 'P' ? 'yellowgreen' : 'orangered'}">
-                            {{attend}} </span>
+                        <span [title]="obj.year" *ngFor="let attend of obj?.selectedMonth" let i="index"
+                            class="custom-tooltip rounded-circle p-2 m-1  text-white d-grid " [ngClass]=" attend == 'P' ? 'bg-success':
+                        attend == 'A' ? 'bg-danger' : 'bg-secondary' ">
+                            {{ attend ? attend : 'n/a' }}</span>
+
+
 
 
 
@@ -115,10 +118,11 @@
 
 <div style="margin-top:1000px">
     <ng-template #picmodal let-modal>
-        <div class="modal-header mt-10 ">
+        <div class="modal-header mt-10 " style="background-color:black;color:white">
             <h4 class="modal-title mt-4" id="modal-basic-title">UPDATE PIC</h4>
 
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"
+                style="background-color:white"></button>
         </div>
 
         <div class=" form-group mb-3" style="padding:0 10px 0 10px;" align="center">
@@ -142,9 +146,10 @@
 <!-- -------------------------------------------modal---------------------------------------------------------->
 
 <ng-template #mymodal let-modal>
-    <div class="modal-header ">
+    <div class="modal-header " style="background-color:black;color:white">
         <h4 class="modal-title " id="modal-basic-title">EDIT PROFILE</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"
+            style="background-color:white"></button>
     </div>
     <div class="modal-body">
         <form [formGroup]="edit">
@@ -234,3 +239,6 @@
             (click)="modal.close('Save click')">SAVE</button>
     </div>
 </ng-template>
+
+
+

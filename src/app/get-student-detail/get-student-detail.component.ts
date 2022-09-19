@@ -10,6 +10,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./get-student-detail.component.scss']
 })
 export class GetStudentDetailComponent implements OnInit {
+  d:any=[]
   roll: any = ''
   section: any = ''
   class: any = ''
@@ -58,8 +59,8 @@ export class GetStudentDetailComponent implements OnInit {
   }
   select_month(e: any) {
     this.res = e.value
-    console.log(e.value)
-    console.log(this.res)
+    //console.log(e.value)
+   // console.log(this.res)
 
   }
 
@@ -129,7 +130,7 @@ export class GetStudentDetailComponent implements OnInit {
 
 
   onedit(a:any) {
-    console.log("1234567890", this.class, this.section, this.roll)
+    console.log( this.class, this.section, this.roll)
     const data = { "name": a.name, "class": a.class, 'section': a.section, 'rollNo': a.rollNo, "gender": a.gender, "dateOfBirth": a.dateOfBirth, "year": a.year }
     this.http.patch(`http://localhost:5000/edit_profile?class=${this.class}&section=${this.section}&rollno=${this.roll}`, data).
       subscribe({
@@ -146,8 +147,15 @@ export class GetStudentDetailComponent implements OnInit {
     console.log("ye kya h", stud)
     console.log("ye kya behuda harkat h", ind)
     this.result[ind].selectedMonth = stud[month]
+    console.log( ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",this.result[ind].selectedMonth)
     this.att = this.result[ind].selectedMonth
-    console.log("!2345678",this.att)
+   // console.log("999999999999999999999999999999999",this.att[0])
+    // for(let i = 1;i<=this.att.length;i++){
+    //    console.log(i)
+    //    this.d = i
+    // }
+
+   // console.log("!2345678",this.att)
   }
   onTableDataChange(event: any) {
     this.page = event;
@@ -159,9 +167,14 @@ export class GetStudentDetailComponent implements OnInit {
     this.page = 1;
 
   }
+  
 
 
 }
 
 
+
+function indexof(arg0: number) {
+  throw new Error('Function not implemented.');
+}
 

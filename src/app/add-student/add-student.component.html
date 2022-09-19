@@ -11,7 +11,7 @@
             <div class=" form-group mb-3" style="padding:0 10px 0 10px;" align="right">
                 <label class="button-sty" style="background-color:white">
                     <input type="file" formControlName="profile" (change)="upload_student_img($event)">
-                    <img *ngIf="userImg" src={{userImg}} width="100%" height="100%" />
+                    <img *ngIf="userImg" src={{userImg}} width="100%" height="100%" alt="choose image" />
 
                     <span style="color:red" *ngIf="profile && profile.invalid && profile.touched ">choose a image</span>
                 </label>
@@ -176,6 +176,4 @@
 
 
         </div>
-        <!-- <div align="right" class=" form-group mb-5">
-    <button type="submit" class="btn btn-primary">Submit</button>
-</div> -->
+       
